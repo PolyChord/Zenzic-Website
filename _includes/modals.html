@@ -45,3 +45,75 @@
   </div>
 </div>
 {% endfor %}
+<!-- this is a test -->
+<div class="portfolio-modal modal fade" id="testmodal" tabindex="-1" role="dialog"
+  aria-hidden="true">
+  <div class="modal-content">
+    <div class="close-modal" data-dismiss="modal">
+      <div class="lr">
+        <div class="rl">
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <div class="modal-body">
+            <h2>Test Title</h2>
+            <hr class="star-primary">
+            <img src="img/N_antenna/sum_N_2.png" class="img-responsive img-centered" alt="testpic">
+
+            <p>This is a test</p>
+            <ul class="list-inline item-details">
+              <li>Date:
+                <strong>a date</strong>
+              </li>
+              <li>Service:
+                <strong>None</strong>
+              </li>
+            </ul>
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>
+              Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end of test -->
+
+<div class="portfolio-modal modal fade" id="my-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-content">
+    <div class="close-modal" data-dismiss="modal">
+      <div class="lr">
+        <div class="rl">
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="modal-body">
+            <h2>Optimising the number of antennas</h2>
+            <hr class="star-primary">
+            <p>During our work with Warwick Manufacturing Group, we optimised the placement of the antennas on the Warwick campus to yield the best possible network coverage of the main road network to facilitate the deployment of connected and autonomous vehicles. Our results were verified via WMG's user-in-the-loop simulations, in which state-of-the-art ray tracing simulations are combined with emulation of a physical signal.
+            Use the slider to control the number of antennas in the network and see how the coverage changes.</p>
+            <ul class="list-inline item-details">
+              <li>
+                <form class="form-group-sm">
+                    <label for="sliderN"><i class="bi-images"></i>&nbsp;Number of antennas:</label>
+                    <input type="range" min="2" max="9" value="6" id="sliderN"><label id="valueN"></label>&nbsp;
+                </form>
+              </li>
+            </ul>
+    		    <div class="wrapper" id="canvasWrapper" style="margin-right: auto; margin-left: auto; position: relative; width: 800px; height: 800px;">
+    				  <canvas id="images" width='800' height='800' style="position: absolute; top: 0;left: 0; border:1px solid #000FFF;"></canvas>
+    				  <canvas id="drawing" width='800' height='800' style="position: absolute; top: 0;left: 0; border:1px solid #000000;"></canvas>
+    			  </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{{ " js/N_antenna.js" }}"></script>
