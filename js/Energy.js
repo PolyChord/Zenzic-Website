@@ -1,7 +1,7 @@
 if(window.addEventListener) {
     let filesEnergy = new Array()
     let fileNamesEnergy = new Array();
-    let N_Energy = -1, scaleEnergy = 0.5;
+    let N_Energy = 10, scaleEnergy = 0.5;
 
     let sliderMinPower, valueMinPower;
     let sliderMeanPower, valueMeanPower;
@@ -17,32 +17,8 @@ if(window.addEventListener) {
         var canvasWrapperEnergy;
         // Initialization sequence.
         function init () {
-            // Find the wrapper
-            canvasWrapperEnergy = document.getElementById('canvasWrapperEnergy');
-            if (!canvasWrapperEnergy) {
-                alert('Error: I cannot find the canvas wrapper element!');
-                return;
-            }
-            // Find the canvas elements.
-
-            imageCanvasEnergy = document.getElementById('imagesEnergy');
-            if (!imageCanvasEnergy) {
-                alert('Error: I cannot find the canvas element!');
-                return;
-            }
-
-            if (!imageCanvasEnergy.getContext) {
-                alert('Error: no canvas.getContext!');
-                return;
-            }
-
-            // Get the 2D canvas context.
-            imageContextEnergy = imageCanvasEnergy.getContext('2d');
-            if (!imageContextEnergy) {
-                alert('Error: failed to getContext!');
-                return;
-            }
             /// GET THE I/O HTML OBJECTS
+            N_energy = 10
             sliderMinPower = document.getElementById('sliderMinPower');
             sliderMinPower.addEventListener("input", function(e){setMinPower(e.target.value);}, false);
             valueMinPower = document.getElementById('valueMinPower');
@@ -50,28 +26,17 @@ if(window.addEventListener) {
             sliderMeanPower.addEventListener("input", function(e){setMeanPower(e.target.value);}, false);
             valueMeanPower = document.getElementById('valueMeanPower');
             energyUsage = document.getElementById('energyUsage');
+            energySavings = document.getElementById('energySavings');
+            imageEnergy = document.getElementById("EnergyCoverage")
             //sliderZoom = document.getElementById('sliderZoom');
             //sliderZoom.addEventListener("input", function(e){setZoom(e.target.value);}, false);
 
             /// Load the images
             for (let i = 0; i < 30; i++) {
-                const img = document.createElement("img");
-                img.classList.add("obj");
-                img.src = "img/Energy/" + i +".png" //URL.createObjectURL(fileNames[i]);
-                if (i == 29)
-                {
-                    img.onload = function(){
-                      filesEnergy[i] = img;
-                      valueMinPower.innerHTML = currentMinPower.toString()+' dBm';
-                      valueMeanPower.innerHTML = currentMeanPower.toString()+' dBm';
-                      calculate_new_index(currentMinPower, currentMeanPower);
-                    }
-                } else {
-                    img.onload = function(){
-                        filesEnergy[i] = img;
-                    }
-                }
+                fileNamesEnergy[i] = "img/Energy/" + i +".png";
             }
+            valueMinPower.innerHTML = currentMinPower.toString()+' dBm';
+            valueMeanPower.innerHTML = currentMeanPower.toString()+' dBm';
 
             /// load the data
 
@@ -85,6 +50,7 @@ if(window.addEventListener) {
                     var text = readerMinPower.responseText;
                     // Now convert it into array using regex
                     minPower = text.split(/\n|\r/g).map(Number);
+                    calculate_new_index(currentMinPower, currentMeanPower);
                 }
                 readerMinPower.send(null);
             }
@@ -94,6 +60,7 @@ if(window.addEventListener) {
                     var text = readerMeanPower.responseText;
                     // Now convert it into array using regex
                     meanPower = text.split(/\n|\r/g).map(Number);
+                    calculate_new_index(currentMinPower, currentMeanPower);
                 }
                 readerMeanPower.send(null);
             }
@@ -103,6 +70,7 @@ if(window.addEventListener) {
                     var text = readerEnergy.responseText;
                     // Now convert it into array using regex
                     energy = text.split(/\n|\r/g).map(Number);
+                    calculate_new_index(currentMinPower, currentMeanPower);
                 }
                 readerEnergy.send(null);
             }
@@ -110,6 +78,7 @@ if(window.addEventListener) {
             loadMinPower();
             loadMeanPower();
             loadEnergy();
+
 
         }
         function setMinPower(P)
@@ -139,29 +108,18 @@ if(window.addEventListener) {
                 {
                     currentEnergy = energy[i];
                     energyUsage.value = currentEnergy.toString()+" mW";
+                    energySavings.value = (100 - currentEnergy*100/2511.89).toFixed(1).toString()+" %";
                     N_energy = i;
+                    console.log(minPower[i], min, meanPower[i], mean);
                     break;
                 }
             }
-            requestAnimationFrame(displayImage);
+            displayImage();
         }
 
         function displayImage()
         {
-            //console.log(N_energy)
-            var imageEnergy = filesEnergy[N_energy];
-            if ((imageCanvasEnergy.width !== scaleEnergy*imageEnergy.width) || (imageCanvasEnergy.height !== scaleEnergy*imageEnergy.height)) {
-                imageCanvasEnergy.width = scaleEnergy*imageEnergy.width;
-                imageCanvasEnergy.height = scaleEnergy*imageEnergy.height;
-                var widthstr = (scaleEnergy*imageEnergy.width).toString().concat('px');
-                var heightstr = (scaleEnergy*imageEnergy.height).toString().concat('px');
-                canvasWrapperEnergy.style.width = widthstr;
-                canvasWrapperEnergy.style.height = heightstr;
-            }
-            imageContextEnergy.clearRect(0, 0, imageCanvasEnergy.width, imageCanvasEnergy.height);
-            imageContextEnergy.setTransform(1, 0, 0, 1, 0, 0);
-            imageContextEnergy.scale(scaleEnergy, scaleEnergy);
-            imageContextEnergy.drawImage(imageEnergy, 0, 0);
+            imageEnergy.src = fileNamesEnergy[N_energy];
         }
         init();
 

@@ -63,7 +63,7 @@
             <hr class="star-primary">
             <p>During our work with Warwick Manufacturing Group, we optimised the placement of the antennas on the Warwick campus to yield the best possible network coverage of the main road network to facilitate the deployment of connected and autonomous vehicles. Our results were verified via WMG's user-in-the-loop simulations, in which state-of-the-art ray tracing simulations are combined with emulation of a physical signal. </p>
             <p>Use the slider to control the number of antennas in the network and see how the coverage changes.</p>
-            <ul class="list-inline item-details">
+            <ul class="list-inline" style="margin-bottom: 0px">
               <li>
                 <form class="form-group-sm">
                     <label for="sliderN"><i class="bi-images"></i>&nbsp;Number of antennas:</label>
@@ -71,10 +71,14 @@
                 </form>
               </li>
             </ul>
-    		    <div class="wrapper" id="canvasWrapper" style="margin-right: auto; margin-left: auto; position: relative; width: 800px; height: 800px;">
-    				  <canvas id="images" width='800' height='800' style="position: absolute; top: 0;left: 0; border:1px solid #000FFF;"></canvas>
-    				  <canvas id="drawing" width='800' height='800' style="position: absolute; top: 0;left: 0; border:1px solid #000000;"></canvas>
-    			  </div>
+            <div class="portfolio-flex-row">
+              <div class="portfolio-flex-item portfolio-item">
+                <img src="img/N_antenna/sum_N_6.png" id="NAntennaCoverage" class="img-responsive img-centered" style="padding: 0px 0px 0px 50px; margin-bottom: 0px" alt="Metrics for different number of antennas">
+              </div>
+              <div class="portfolio-flex-item portfolio-item">
+                <img src="img/N_antenna/metrics_N_6.png" id="NAntennaMetric" class="img-responsive img-centered" style="margin-bottom: 0px" alt="Metrics for different number of antennas">
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -110,6 +114,7 @@
                 </form>
               </li>
             </ul>
+
     		    <div class="wrapper" id="canvasWrapperDropout" style="margin-right: auto; margin-left: auto; position: relative; width: 800px; height: 800px;">
     				  <canvas id="imagesDropout" width='800' height='800' style="position: absolute; top: 0;left: 0;"></canvas>
     				  <canvas id="drawingDropout" width='800' height='800' style="position: absolute; top: 0;left: 0;"></canvas>
@@ -152,10 +157,27 @@
                 </form>
               </li>
             </ul>
-            <form class="form-group-sm">
-                <label for="energyUsage"><i class="bi-images"></i>&nbsp;Energy usage:</label>
-                <input type="text" id="energyUsage" size="7" value="0.0" style="text-align:right;" readonly="readonly"/>&nbsp;
-            </form>
+            <ul class="list-inline item-details">
+              <li>
+                <form class="form-group-sm">
+                    <label for="energyUsage"><i class="bi-images"></i>&nbsp;Energy usage:</label>
+                    <input type="text" id="energyUsage" size="7" value="0.0" style="text-align:right;" readonly="readonly"/>&nbsp;
+                </form>
+              </li>
+              <li>
+                <form class="form-group-sm">
+                    <label for="energySavings"><i class="bi-images"></i>&nbsp;Energy savings:</label>
+                    <input type="text" id="energySavings" size="7" value="0.0" style="text-align:right;" readonly="readonly"/>&nbsp;
+                </form>
+              </li>
+            </ul>
+            <div class="portfolio-flex-row">
+              <div class="portfolio-flex-item portfolio-item">
+                <img src="img/Energy/10.png" id="EnergyCoverage" class="img-responsive img-centered" style="padding: 0px 0px 0px 50px; margin-bottom: 0px" alt="Metrics for different number of antennas">
+              </div>
+
+            </div>
+
     		    <div class="wrapper" id="canvasWrapperEnergy" style="margin-right: auto; margin-left: auto; position: relative; width: 800px; height: 800px;">
     				  <canvas id="imagesEnergy" width='800' height='800' style="position: absolute; top: 0;left: 0;"></canvas>
     			  </div>
