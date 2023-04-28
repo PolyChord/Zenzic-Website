@@ -1,5 +1,5 @@
 if(window.addEventListener) {
-    let filesEnergy = new Array()
+    let filesNamesMetric = new Array();
     let fileNamesEnergy = new Array();
     let N_Energy = 10, scaleEnergy = 0.5;
 
@@ -27,13 +27,15 @@ if(window.addEventListener) {
             valueMeanPower = document.getElementById('valueMeanPower');
             energyUsage = document.getElementById('energyUsage');
             energySavings = document.getElementById('energySavings');
-            imageEnergy = document.getElementById("EnergyCoverage")
+            imageEnergy = document.getElementById("EnergyCoverage");
+            imageEnergyMetric = document.getElementById("EnergyMetric");
             //sliderZoom = document.getElementById('sliderZoom');
             //sliderZoom.addEventListener("input", function(e){setZoom(e.target.value);}, false);
 
             /// Load the images
             for (let i = 0; i < 30; i++) {
                 fileNamesEnergy[i] = "img/Energy/" + i +".png";
+                filesNamesMetric[i] = "img/Energy/metric_" + i +".png";
             }
             valueMinPower.innerHTML = currentMinPower.toString()+' dBm';
             valueMeanPower.innerHTML = currentMeanPower.toString()+' dBm';
@@ -120,6 +122,7 @@ if(window.addEventListener) {
         function displayImage()
         {
             imageEnergy.src = fileNamesEnergy[N_energy];
+            imageEnergyMetric.src = filesNamesMetric[N_energy];
         }
         init();
 

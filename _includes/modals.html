@@ -143,7 +143,7 @@
             <hr class="star-primary">
             <p>MIDAS can minimise power consumption whilst ensuring a functional network to reduce a network’s carbon impact. In validation tests optimising a small campus network, MIDAS delivered energy savings of 30%</p>
             <p>Use the sliders to control minimum and/or average signal strength to see how MIDAS selects new power level to guarantee your requirements at the lowest possible energy cost.</p>
-            <ul class="list-inline item-details">
+            <ul class="list-inline" style="margin-bottom: 0px">
               <li>
                 <form class="form-group-sm">
                     <label for="sliderMinPower"><i class="bi-images"></i>&nbsp;Required minimum signal:</label>
@@ -157,7 +157,7 @@
                 </form>
               </li>
             </ul>
-            <ul class="list-inline item-details">
+            <ul class="list-inline" style="margin-bottom: 0px">
               <li>
                 <form class="form-group-sm">
                     <label for="energyUsage"><i class="bi-images"></i>&nbsp;Energy usage:</label>
@@ -173,14 +173,12 @@
             </ul>
             <div class="portfolio-flex-row">
               <div class="portfolio-flex-item portfolio-item">
-                <img src="img/Energy/10.png" id="EnergyCoverage" class="img-responsive img-centered" style="padding: 0px 0px 0px 50px; margin-bottom: 0px" alt="Metrics for different number of antennas">
+                <img src="img/Energy/10.png" id="EnergyCoverage" class="img-responsive img-centered" style="margin-bottom: 0px" alt="CoverageMap">
               </div>
-
+              <div class="portfolio-flex-item portfolio-item">
+                <img src="img/Energy/metric_10.png" id="EnergyMetric" class="img-responsive img-centered" style="margin-bottom: 0px" alt="Average signal strength vs energy usage">
+              </div>
             </div>
-
-    		    <div class="wrapper" id="canvasWrapperEnergy" style="margin-right: auto; margin-left: auto; position: relative; width: 800px; height: 800px;">
-    				  <canvas id="imagesEnergy" width='800' height='800' style="position: absolute; top: 0;left: 0;"></canvas>
-    			  </div>
           </div>
         </div>
       </div>
