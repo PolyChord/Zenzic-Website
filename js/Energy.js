@@ -6,7 +6,7 @@ if(window.addEventListener) {
     let sliderMinPower, valueMinPower;
     let sliderMeanPower, valueMeanPower;
     let energyUsage;
-    let currentEnergy, currentMinPower = -110, currentMeanPower = -95;
+    let currentEnergy, currentMinPower = -110, currentMeanPower = -96;
     let minPower = new Array();
     let meanPower = new Array();
     let energy = new Array();

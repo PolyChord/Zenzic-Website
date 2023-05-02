@@ -67,7 +67,7 @@
               <li>
                 <form class="form-group-sm">
                     <label for="sliderN"><i class="bi-images"></i>&nbsp;Number of antennas:</label>
-                    <input type="range" min="2" max="9" value="6" id="sliderN"><label id="valueN"></label>&nbsp;
+                    <input type="range" min="2" max="9" value="6" id="sliderN"style="display: inline-block; width:auto;"><label id="valueN"></label>&nbsp;
                 </form>
               </li>
             </ul>
@@ -106,19 +106,22 @@
               MIDAS can optimise sensor locations with antenna failure in mind -
               this guarantees a network that is as robust to hardware failures as is possible under the installation constraints.</p>
             <p>Use the slider to control which antenna is dropped from the network and see how the coverage changes.</p>
-            <ul class="list-inline item-details">
-              <li>
-                <form class="form-group-sm">
-                    <label for="sliderDropout"><i class="bi-images"></i>&nbsp;Antenna failure:</label>
-                    <input type="range" min="0" max="7" value="0" id="sliderDropout"><label id="valueDropout"></label>&nbsp;
-                </form>
-              </li>
-            </ul>
-
-    		    <div class="wrapper" id="canvasWrapperDropout" style="margin-right: auto; margin-left: auto; position: relative; width: 800px; height: 800px;">
-    				  <canvas id="imagesDropout" width='800' height='800' style="position: absolute; top: 0;left: 0;"></canvas>
-    				  <canvas id="drawingDropout" width='800' height='800' style="position: absolute; top: 0;left: 0;"></canvas>
-    			  </div>
+              <div class="controls">
+                  <form class="form-group-sm">
+                  Network optimised for:
+                  <input type="radio" id="coverage" name="pickOptimisation" value="coverage" checked>
+        	        <label for="coverage">&nbsp;Coverage</label>
+        	        <input type="radio" id="dropout" name="pickOptimisation" value="dropout" >
+        	        <label for="dropout">&nbsp;Robustness to dropouts</label>
+                  </form>
+                  <form class="form-group-sm">
+                    <label for="sliderDropout" style="margin-left: 5px">&nbsp;Antenna failure:</label>
+                    <input type="range" min="0" max="7" value="0" id="sliderDropout" style="display: inline-block; width:auto;"><label id="valueDropout"></label>&nbsp;
+                  </form>
+            </div>
+            <div class="portfolio-flex-item portfolio-item">
+              <img src="img/Dropouts/sum_8_50_dropout_0.png" id="imagesDropout" class="img-responsive img-centered" style="padding: 0px 0px 0px 0px; margin-bottom: 0px" alt="Coverage with dropouts">
+            </div>
           </div>
         </div>
       </div>
@@ -146,27 +149,27 @@
             <ul class="list-inline" style="margin-bottom: 0px">
               <li>
                 <form class="form-group-sm">
-                    <label for="sliderMinPower"><i class="bi-images"></i>&nbsp;Required minimum signal:</label>
-                    <input type="range" min="-114" max="-105" value="-110" id="sliderMinPower"><label id="valueMinPower"></label>&nbsp;
+                    <label for="sliderMinPower"><i class="bi-images"></i>Required minimum signal:</label>
+                    <input type="range" min="-114" max="-105" value="-110" id="sliderMinPower" style="display: inline-block; width:auto;"><label id="valueMinPower"></label>&nbsp;
                 </form>
               </li>
               <li>
                 <form class="form-group-sm">
-                    <label for="sliderMeanPower"><i class="bi-images"></i>&nbsp;Required average signal:</label>
-                    <input type="range" min="-100" max="-91" value="-95" id="sliderMeanPower"><label id="valueMeanPower"></label>&nbsp;
+                    <label for="sliderMeanPower">Required average signal:</label>
+                    <input type="range" min="-100" max="-91" value="-96" id="sliderMeanPower" style="display: inline-block; width:auto;"><label id="valueMeanPower"></label>&nbsp;
                 </form>
               </li>
             </ul>
             <ul class="list-inline" style="margin-bottom: 0px">
               <li>
                 <form class="form-group-sm">
-                    <label for="energyUsage"><i class="bi-images"></i>&nbsp;Energy usage:</label>
+                    <label for="energyUsage"><i class="bi-images"></i>Energy usage:</label>
                     <input type="text" id="energyUsage" size="7" value="0.0" style="text-align:right;" readonly="readonly"/>&nbsp;
                 </form>
               </li>
               <li>
                 <form class="form-group-sm">
-                    <label for="energySavings"><i class="bi-images"></i>&nbsp;Energy savings:</label>
+                    <label for="energySavings"><i class="bi-images"></i>Energy savings:</label>
                     <input type="text" id="energySavings" size="7" value="0.0" style="text-align:right;" readonly="readonly"/>&nbsp;
                 </form>
               </li>
