@@ -87,6 +87,49 @@
 </div>
 <script src="{{ " js/N_antenna.js" }}"></script>
 
+<div class="portfolio-modal modal fade" id="Exclusion-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-content">
+    <div class="close-modal" data-dismiss="modal">
+      <div class="lr">
+        <div class="rl">
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="modal-body">
+            <h2>Restricting Antenna Locations</h2>
+            <hr class="star-primary">
+            <p>This is a description</p>
+            <p>Click on a location on the map where you don't want an antenna to be placed and see how the network layout and the coverage changes.</p>
+            <ul class="list-inline" style="margin-bottom: 0px">
+              <li>
+                <form class="form-group-sm">
+                    <label for="meanSignal"><i class="bi-images"></i>Average received power:</label>
+                    <input type="text" id="meanSignal" size="7" value="0.0" style="text-align:right;" readonly="readonly"/>&nbsp;
+                </form>
+              </li>
+              <li>
+                <form class="form-group-sm">
+                    <label for="minSignal"><i class="bi-images"></i>Minimum received power:</label>
+                    <input type="text" id="minSignal" size="7" value="0.0" style="text-align:right;" readonly="readonly"/>&nbsp;
+                </form>
+              </li>
+              <li>
+                <button id="clearExclusions" class="btn btn-primary btn-sm" style="font-size: 15px;">Reset excluded coordinates</button>
+              </li>
+            </ul>
+            <canvas id="images" width='400' height='400' ></canvas>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{{ " js/Exclusion.js" }}"></script>
+
 <div class="portfolio-modal modal fade" id="Dropout-modal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-content">
     <div class="close-modal" data-dismiss="modal">

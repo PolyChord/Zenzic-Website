@@ -8,9 +8,6 @@ if(window.addEventListener) {
 
 
     window.addEventListener('load', function () {
-        var canvasDropout, contextDropout;
-        var imageCanvasDropout, imageContextDropout;
-        var canvasWrapperDropout;
         // Initialization sequence.
         function init () {
             // Find the image

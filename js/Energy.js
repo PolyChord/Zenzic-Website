@@ -12,9 +12,6 @@ if(window.addEventListener) {
     let energy = new Array();
 
     window.addEventListener('load', function () {
-        var canvasEnergy, contextEnergy;
-        var imageCanvasEnergy, imageContextEnergy;
-        var canvasWrapperEnergy;
         // Initialization sequence.
         function init () {
             /// GET THE I/O HTML OBJECTS
@@ -47,7 +44,7 @@ if(window.addEventListener) {
             var readerEnergy = new XMLHttpRequest() || new ActiveXObject('MSXML2.XMLHTTP');
 
             function loadMinPower() {
-                readerMinPower.open('get', "data/min_power.txt", true);
+                readerMinPower.open('get', "data/Energy/min_power.txt", true);
                 readerMinPower.onreadystatechange = function() {
                     var text = readerMinPower.responseText;
                     // Now convert it into array using regex
@@ -57,7 +54,7 @@ if(window.addEventListener) {
                 readerMinPower.send(null);
             }
             function loadMeanPower() {
-                readerMeanPower.open('get', "data/mean_power.txt", true);
+                readerMeanPower.open('get', "data/Energy/mean_power.txt", true);
                 readerMeanPower.onreadystatechange = function() {
                     var text = readerMeanPower.responseText;
                     // Now convert it into array using regex
@@ -67,7 +64,7 @@ if(window.addEventListener) {
                 readerMeanPower.send(null);
             }
             function loadEnergy() {
-                readerEnergy.open('get', "data/energy.txt", true);
+                readerEnergy.open('get', "data/Energy/energy.txt", true);
                 readerEnergy.onreadystatechange = function() {
                     var text = readerEnergy.responseText;
                     // Now convert it into array using regex

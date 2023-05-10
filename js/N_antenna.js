@@ -8,10 +8,6 @@ if(window.addEventListener) {
 
 
     window.addEventListener('load', function () {
-        var canvas, context;
-        var imageCanvas, imageContext;
-        var canvasWrapper;
-        var color = '#A6FF00';
         // Initialization sequence.
         function init () {
             /// GET THE I/O HTML OBJECTS
