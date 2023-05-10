@@ -251,6 +251,29 @@ section.success {
         margin: 0 0 30px;
     }
 }
+@media (min-width: 1380px) {
+  .container {
+      width: 1350px;
+  }
+}
+
+@media (min-width: 1900px) {
+  .container {
+      width: 1850px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .container {
+      width: 1450px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .img-Energy {
+      max-width: 70%;
+  }
+}
 
 /* Flexbox Portfolio Grid */
 @media (min-width: 640px) {

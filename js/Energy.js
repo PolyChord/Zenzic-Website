@@ -49,7 +49,7 @@ if(window.addEventListener) {
                     var text = readerMinPower.responseText;
                     // Now convert it into array using regex
                     minPower = text.split(/\n|\r/g).map(Number);
-                    calculate_new_index(currentMinPower, currentMeanPower);
+                    loadMeanPower();
                 }
                 readerMinPower.send(null);
             }
@@ -59,7 +59,7 @@ if(window.addEventListener) {
                     var text = readerMeanPower.responseText;
                     // Now convert it into array using regex
                     meanPower = text.split(/\n|\r/g).map(Number);
-                    calculate_new_index(currentMinPower, currentMeanPower);
+                    loadEnergy();
                 }
                 readerMeanPower.send(null);
             }
@@ -73,10 +73,9 @@ if(window.addEventListener) {
                 }
                 readerEnergy.send(null);
             }
-
             loadMinPower();
-            loadMeanPower();
-            loadEnergy();
+
+
 
 
         }
@@ -109,7 +108,6 @@ if(window.addEventListener) {
                     energyUsage.value = currentEnergy.toString()+" mW";
                     energySavings.value = (100 - currentEnergy*100/2511.89).toFixed(1).toString()+" %";
                     N_energy = i;
-                    console.log(minPower[i], min, meanPower[i], mean);
                     break;
                 }
             }

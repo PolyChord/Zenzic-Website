@@ -54,26 +54,6 @@ if(window.addEventListener) {
             imageCanvas.addEventListener("click", onClick, false);
 
 
-            /// Load the images
-            for (let i = 0; i < 93; i++) {
-                fileNamesExclusion[i] = "img/Exclusion/" + i +".png";
-                const img = document.createElement("img");
-                img.classList.add("obj");
-                img.src = fileNamesExclusion[i];
-                if (i==92) {
-                  img.onload = function(){
-                    imagesExclusion[i] = img;
-                    setNExclusion(0);
-                  }
-                } else {
-                  img.onload = function(){
-                    imagesExclusion[i] = img;
-                  }
-                }
-            }
-
-
-
             /// load the data
 
             var readerMinPowerExclusion = new XMLHttpRequest() || new ActiveXObject('MSXML2.XMLHTTP');
@@ -86,7 +66,7 @@ if(window.addEventListener) {
                     var text = readerMinPowerExclusion.responseText;
                     // Now convert it into array using regex
                     minPowerExclusion = text.split(/\n|\r/g).map(Number);
-
+                    loadMeanPowerExclusion();
                 }
                 readerMinPowerExclusion.send(null);
             }
@@ -96,6 +76,7 @@ if(window.addEventListener) {
                     var text = readerMeanPowerExclusion.responseText;
                     // Now convert it into array using regex
                     meanPowerExclusion = text.split(/\n|\r/g).map(Number);
+                    loadCoordinatesExclusion();
                 }
                 readerMeanPowerExclusion.send(null);
             }
@@ -114,12 +95,33 @@ if(window.addEventListener) {
                         coords = new Array();
                       }
                     }
+                    load_images();
                 }
                 readerCoordinatesExclusion.send(null);
             }
             loadMinPowerExclusion();
-            loadMeanPowerExclusion();
-            loadCoordinatesExclusion();
+
+
+            function load_images() {
+              /// Load the images
+              for (let i = 0; i < 93; i++) {
+                  fileNamesExclusion[i] = "img/Exclusion/" + i +".png";
+                  const img = document.createElement("img");
+                  img.classList.add("obj");
+                  img.src = fileNamesExclusion[i];
+                  if (i==0) {
+                    img.onload = function(){
+                      imagesExclusion[i] = img;
+                      setNExclusion(0);
+                    }
+                  } else {
+                    img.onload = function(){
+                      imagesExclusion[i] = img;
+                    }
+                  }
+              }
+          }
+
         }
 
 
