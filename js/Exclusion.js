@@ -168,7 +168,7 @@ if(window.addEventListener) {
               if (choose == false) {break;}
               for (let k = 0; k < coordinates[i].length; k++) {
                 let distsq = (coordinates[i][k][0]-excludedCoordinates[j][0])**2 + (coordinates[i][k][1]-excludedCoordinates[j][1])**2;
-                if (distsq < 2500) {
+                if (distsq < 625) {
                   choose = false;
                   break;
                 }

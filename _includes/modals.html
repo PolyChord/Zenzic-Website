@@ -12,8 +12,14 @@
         <div class="col-lg-12">
           <div class="modal-body">
             <h2>Optimising the number of antennas</h2>
-            <hr class="star-primary">
-            <p>During our work with Warwick Manufacturing Group, we optimised the placement of the antennas on the Warwick campus to yield the best possible network coverage of the main road network to facilitate the deployment of connected and autonomous vehicles. Our results were verified via WMG's user-in-the-loop simulations, in which state-of-the-art ray tracing simulations are combined with emulation of a physical signal. </p>
+            <p>During our work with Warwick Manufacturing Group, we optimised the placement of the antennas
+              on the Warwick campus to yield the best possible network coverage of the main road network
+              to facilitate the deployment of connected and autonomous vehicles.
+              Our results were verified via WMG's user-in-the-loop simulations, in which state-of-the-art
+              ray tracing simulations are combined with emulation of a physical signal.
+              The plot to the left shows a map of the Warwick campus with a heatmap where the color
+              corresponds to the strength of the signal at a given location (best signal in yellow, worst in dark purple).
+              The plot to the right shows the metrics we optimised for - average received power (over the locations shown on the right) and minimum received power. </p>
             <p>Use the slider to control the number of antennas in the network and see how the coverage changes.</p>
             <ul class="list-inline" style="margin-bottom: 0px">
               <li>
@@ -52,13 +58,14 @@
         <div class="col-lg-12">
           <div class="modal-body">
             <h2>Antenna location constraints</h2>
-            <hr class="star-primary">
-            <p>Oftentimes, antennas cannot be placed anywhere in a cityscape, for example due to planning permissions or costs.
-               Unlike other optimisation tools, PolyChord does not just produce one optimal solution, but a plethora of near-optimal suggestions.
-               These might come from the regions around the optimal solution, but could also correspond to local maxima in the parameter space.</p>
+            <p>Antennas cannot be placed anywhere in a cityscape, for example due to planning restrictions, building-conservation or cost restrictions.
+              Unlike other optimisation tools, PolyChord does not just produce one optimal solution, but a plethora of near-optimal suggestions
+              - this provides ultimate flexibility if restrictions are different to those assumed during the design phase.
+              These alternative configurations might come from regions around the optimal solution, but could also originate from different local maxima in the parameter space.</p>
             <p>This widget shows the best locations for placing 6 antennas in order to optimise the average and minimum signal on the main road of the WMG campus.
                Click on a location on the map to exclude it from the potential antenna locations and the network layout will change to satisfy the new constraints.
-               The corresponding coverage metrics will be updated, too. To remove a constraint, click again within its circle. To remove all constraints and start fresh, click "Reset excluded coordinates". </p>
+               The corresponding coverage metrics will be updated, too. To remove a constraint, click again within its circle. To remove all constraints and start fresh, click "Reset excluded coordinates".
+               Please note that we only include a fraction of possible layout designs that PolyChord calculated to keep the website fast and responsive.</p>
             <ul class="list-inline" style="margin-bottom: 0px">
               <li>
                 <form class="form-group-sm">
@@ -99,12 +106,16 @@
         <div class="col-lg-12">
           <div class="modal-body">
             <h2>Optimising for hardware failure</h2>
-            <hr class="star-primary">
             <p>Network hardware is bound to fail at some point, therefore it is important (and essential in safety-critical applications)
               for the remaining transmitters to maintain acceptable coverage of the cityscape.
               MIDAS can optimise sensor locations with antenna failure in mind -
               this guarantees a network that is as robust to hardware failures as is possible under the installation constraints.</p>
-            <p>Use the slider to control which antenna is dropped from the network and see how the coverage changes.</p>
+            <p>In this interactive widget, we present two network layouts - one optimised for coverage and one optimised for robustness to single antenna failure.
+              Use the radio butten to switch between the two. The plot to the left shows a map of the Warwick campus with a heatmap where the color
+              corresponds to the strength of the signal at a given location (best signal in yellow, worst in dark purple). The plot to the right shows the same in case
+              a particular antenna has failed. Use the slider to control which antenna is dropped from the network and see how the coverage changes.
+              You will notice how half of the dropout scenarios lead to deadspots (black) in the network layout that was optimised for coverage,
+              but not in the network optimised for robustness to hardware failure.</p>
               <div class="controls">
                   <form class="form-group-sm">
                   Network optimised for:
@@ -142,43 +153,53 @@
         <div class="col-lg-12">
           <div class="modal-body">
             <h2>Optimising for energy consumption</h2>
-            <hr class="star-primary">
-            <p>MIDAS can minimise power consumption whilst ensuring a functional network to reduce a network’s carbon impact. In validation tests optimising a small campus network, MIDAS delivered energy savings of 30%</p>
-            <p>Use the sliders to control minimum and/or average signal strength to see how MIDAS selects new power level to guarantee your requirements at the lowest possible energy cost.</p>
-            <ul class="list-inline" style="margin-bottom: 0px">
-              <li>
-                <form class="form-group-sm">
-                    <label for="sliderMinPower"><i class="bi-images"></i>Required minimum signal:</label>
-                    <input type="range" min="-114" max="-105" value="-110" id="sliderMinPower" style="display: inline-block; width:auto;"><label id="valueMinPower"></label>&nbsp;
-                </form>
-              </li>
-              <li>
-                <form class="form-group-sm">
-                    <label for="sliderMeanPower">Required average signal:</label>
-                    <input type="range" min="-100" max="-91" value="-96" id="sliderMeanPower" style="display: inline-block; width:auto;"><label id="valueMeanPower"></label>&nbsp;
-                </form>
-              </li>
-            </ul>
-            <ul class="list-inline" style="margin-bottom: 0px">
-              <li>
-                <form class="form-group-sm">
-                    <label for="energyUsage"><i class="bi-images"></i>Energy usage:</label>
-                    <input type="text" id="energyUsage" size="7" value="0.0" style="text-align:right;" readonly="readonly"/>&nbsp;
-                </form>
-              </li>
-              <li>
-                <form class="form-group-sm">
-                    <label for="energySavings"><i class="bi-images"></i>Energy savings:</label>
-                    <input type="text" id="energySavings" size="7" value="0.0" style="text-align:right;" readonly="readonly"/>&nbsp;
-                </form>
-              </li>
-            </ul>
-              <img src="img/Energy/10.png" id="EnergyCoverage" class="img-responsive img-centered img-Energy" style="margin-bottom: 0px;" alt="CoverageMap">
-              <img src="img/Energy/metric_10.png" id="EnergyMetric" class="img-responsive img-centered" style="margin-bottom: 0px; max-height:250px;" alt="Average signal strength vs energy usage">
           </div>
+        </div>
+      </div>
+      <div class="row" >
+        <div class="col-lg-6">
+          <p style="text-align: justify;">MIDAS can minimise power consumption whilst ensuring a functional network to reduce a network’s carbon impact. In validation tests optimising a small campus network, MIDAS delivered energy savings of 30%</p>
+          <p style="text-align: justify;">Use the sliders to control minimum and/or average signal strength to see how MIDAS selects new power level to guarantee your requirements at the lowest possible energy cost.</p>
+          <ul class="list-inline" style="margin-bottom: 0px" >
+            <li>
+              <form class="form-group-sm">
+                  <label for="sliderMinPower"><i class="bi-images"></i>Required minimum signal:</label>
+                  <input type="range" min="-114" max="-105" value="-110" id="sliderMinPower" style="display: inline-block; width:auto;"><label id="valueMinPower"></label>&nbsp;
+              </form>
+            </li>
+            <li>
+              <form class="form-group-sm">
+                  <label for="sliderMeanPower">Required average signal:</label>
+                  <input type="range" min="-100" max="-91" value="-96" id="sliderMeanPower" style="display: inline-block; width:auto;"><label id="valueMeanPower"></label>&nbsp;
+              </form>
+            </li>
+          </ul>
+          <ul class="list-inline" style="margin-bottom: 0px">
+            <li>
+              <form class="form-group-sm">
+                  <label for="energyUsage"><i class="bi-images"></i>Energy usage:</label>
+                  <input type="text" id="energyUsage" size="7" value="0.0" style="text-align:right;" readonly="readonly"/>&nbsp;
+              </form>
+            </li>
+            <li>
+              <form class="form-group-sm">
+                  <label for="energySavings"><i class="bi-images"></i>Energy savings:</label>
+                  <input type="text" id="energySavings" size="7" value="0.0" style="text-align:right;" readonly="readonly"/>&nbsp;
+              </form>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-6">
+          <img src="img/Energy/metric_10.png" id="EnergyMetric" class="img-responsive img-centered" style="margin-bottom: 0px; max-height:250px;" alt="Average signal strength vs energy usage">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+            <img src="img/Energy/10.png" id="EnergyCoverage" class="img-responsive img-centered img-Energy" style="margin-bottom: 0px;" alt="CoverageMap">
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <script src="{{ " js/Energy.js" }}"></script>
