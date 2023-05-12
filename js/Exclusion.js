@@ -1,7 +1,7 @@
 if(window.addEventListener) {
     let fileNamesExclusion = new Array();
     let imagesExclusion = new Array();
-    let N_Exclusion = -1, scale = 1.;
+    let N_Exclusion = -1, scaleExclusion = 1.;
     let minSignal, meanSignal;
     let minPowerExclusion = new Array();
     let meanPowerExclusion = new Array();
@@ -191,16 +191,14 @@ if(window.addEventListener) {
         function displayImage()
         {
             var image = imagesExclusion[N_Exclusion];
-            if ((imageCanvas.width !== scale*image.width) || (imageCanvas.height !== scale*image.height)) {
+            /*if ((imageCanvas.width !== scale*image.width) || (imageCanvas.height !== scale*image.height)) {
                 imageCanvas.width = scale*image.width;
                 imageCanvas.height = scale*image.height;
-                var widthstr = (scale*image.width).toString().concat('px');
-                var heightstr = (scale*image.height).toString().concat('px');
-            }
+            }*/
             imageContext.clearRect(0, 0, imageCanvas.width, imageCanvas.height);
             imageContext.setTransform(1, 0, 0, 1, 0, 0);
-            imageContext.scale(scale, scale);
-            imageContext.drawImage(image, 0, 0);
+            //imageContext.scale(scaleExclusion, scaleExclusion);
+            imageContext.drawImage(image, 0, 0);//, width, height);
             for (let i = 0; i < excludedCoordinatesCanvas.length; i++) {
               imageContext.beginPath();
               imageContext.strokeStyle = '#DB0000';
@@ -211,10 +209,17 @@ if(window.addEventListener) {
         }
         function onClick(ev) {
           var rect = imageCanvas.getBoundingClientRect();
+          var width = rect.width;
+          var height = rect.height;
+          scaleExclusion = 921/width;
+          //console.log(width, height, scaleExclusion);
           canvas_x = ev.clientX - rect.left;
           canvas_y = ev.clientY - rect.top;
-          coords_x = 250.+ (1000-250)*(canvas_x - 125.)/(721-125)
-          coords_y = 770 - (770-30)*(canvas_y - 21)/(609-21)
+          coords_x = 250.+ (1000-250)*(canvas_x - 125./scaleExclusion)/((721-125)/scaleExclusion);
+          coords_y = 770 - (770-30)*(canvas_y - 21./scaleExclusion)/((609-21)/scaleExclusion);
+          canvas_x *= scaleExclusion;
+          canvas_y *= scaleExclusion;
+          //console.log(canvas_x, canvas_y, coords_x, coords_y);
           exclusionExists = checkExclusionExists([coords_x, coords_y]);
           if (!exclusionExists) {
             excludedCoordinatesCanvas.push([canvas_x, canvas_y]);

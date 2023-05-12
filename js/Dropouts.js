@@ -12,7 +12,6 @@ if(window.addEventListener) {
         function init () {
             // Find the image
             dropoutImage = document.getElementById("imagesDropout");
-            console.log("HelloWorldDropout")
             /// GET THE I/O HTML OBJECTS
             sliderDropout = document.getElementById('sliderDropout');
             sliderDropout.addEventListener("input", function(e){setNDropout(e.target.value);}, false);
