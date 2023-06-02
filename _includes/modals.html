@@ -20,7 +20,7 @@
               The plot to the left shows a map of the Warwick campus with a heatmap where the color
               corresponds to the strength of the signal at a given location (best signal in yellow, worst in dark purple).
               The plot to the right shows the metrics we optimised for - average received power (over the locations shown on the right) and minimum received power. </p>
-            <p>Use the slider to control the number of antennas in the network and see how the coverage changes.</p>
+            <p class="thick">Use the slider to control the number of antennas in the network and see how the coverage changes.</p>
             <ul class="list-inline" style="margin-bottom: 0px">
               <li>
                 <form class="form-group-sm">
@@ -63,8 +63,8 @@
               - this provides ultimate flexibility if restrictions are different to those assumed during the design phase.
               These alternative configurations might come from regions around the optimal solution, but could also originate from different local maxima in the parameter space.</p>
             <p>This widget shows the best locations for placing 6 antennas in order to optimise the average and minimum signal on the main road of the WMG campus.
-               Click on a location on the map to exclude it from the potential antenna locations and the network layout will change to satisfy the new constraints.
-               The corresponding coverage metrics will be updated, too. To remove a constraint, click again within its circle. To remove all constraints and start fresh, click "Reset excluded coordinates".
+               <b>Click on a location on the map to exclude it from the potential antenna locations and the network layout will change to satisfy the new constraints. </b>
+               The corresponding coverage metrics will be updated, too. <b>To remove a constraint, click again within its circle. To remove all constraints and start fresh, click "Reset excluded coordinates".</b>
                Please note that we only include a fraction of possible layout designs that PolyChord calculated to keep the website fast and responsive.</p>
             <ul class="list-inline" style="margin-bottom: 0px">
               <li>
@@ -110,21 +110,21 @@
               MIDAS can optimise sensor locations with antenna failure in mind -
               this guarantees a network that is as robust to hardware failures as is possible under the installation constraints.</p>
             <p>In this interactive widget, we present two network layouts - one optimised for coverage and one optimised for robustness to single antenna failure.
-              Use the radio butten to switch between the two. The plot to the left shows a map of the Warwick campus with a heatmap where the color
+              <b>Use the radio butten to switch between the type of network optimisation.</b> The plot to the left shows a map of the Warwick campus with a heatmap where the color
               corresponds to the strength of the signal at a given location (best signal in yellow, worst in dark purple). The plot to the right shows the same in case
-              a particular antenna has failed. Use the slider to control which antenna is dropped from the network and see how the coverage changes.
+              a particular antenna has failed. <b>Use the slider to control which antenna is dropped from the network and see how the coverage changes.</b>
               You will notice how half of the dropout scenarios lead to deadspots (black) in the network layout that was optimised for coverage,
               but not in the network optimised for robustness to hardware failure.</p>
               <div class="controls">
                   <form class="form-group-sm">
-                  Network optimised for:
+                  <b> Click to change what the network is optimised for:</b>
                   <input type="radio" id="coverage" name="pickOptimisation" value="coverage" checked>
         	        <label for="coverage">&nbsp;Coverage</label>
         	        <input type="radio" id="dropout" name="pickOptimisation" value="dropout" >
         	        <label for="dropout">&nbsp;Robustness to dropouts</label>
                   </form>
                   <form class="form-group-sm">
-                    <label for="sliderDropout" style="margin-left: 5px">&nbsp;Antenna failure:</label>
+                    <label for="sliderDropout" style="margin-left: 5px">&nbsp;Select which antenna has failed:</label>
                     <input type="range" min="0" max="7" value="0" id="sliderDropout" style="display: inline-block; width:auto;"><label id="valueDropout"></label>&nbsp;
                   </form>
             </div>
@@ -158,7 +158,7 @@
       <div class="row" >
         <div class="col-lg-6">
           <p style="text-align: justify;">MIDAS can minimise power consumption whilst ensuring a functional network to reduce a network’s carbon impact. In validation tests optimising a small campus network, MIDAS delivered energy savings of 30%</p>
-          <p style="text-align: justify;">Use the sliders to control minimum and/or average signal strength to see how MIDAS selects new power level to guarantee your requirements at the lowest possible energy cost.</p>
+          <p style="text-align: justify;"><b>Use the sliders to control minimum and/or average signal strength </b>to see how MIDAS selects new power level to guarantee your requirements at the lowest possible energy cost.</p>
           <ul class="list-inline" style="margin-bottom: 0px" >
             <li>
               <form class="form-group-sm">

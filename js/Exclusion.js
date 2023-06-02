@@ -206,6 +206,10 @@ if(window.addEventListener) {
               imageContext.arc(excludedCoordinatesCanvas[i][0], excludedCoordinatesCanvas[i][1], 25/map_to_canvas_ratio, 0, 2 * Math.PI);
               imageContext.stroke();
             }
+            imageContext.font = "25px Helvetica";
+            imageContext.fillText("Click on a location", imageCanvas.width*0.17, imageCanvas.height*0.75);
+            imageContext.fillText("to exclude it from", imageCanvas.width*0.17, imageCanvas.height*0.78);
+            imageContext.fillText("antenna placement", imageCanvas.width*0.17, imageCanvas.height*0.81);
         }
         function onClick(ev) {
           var rect = imageCanvas.getBoundingClientRect();
