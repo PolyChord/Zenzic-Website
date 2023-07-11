@@ -1,5 +1,10 @@
+/*
+This code handles the interactive component of the Dropout ("Fail-safe networks") section.
+Slider inputs are caught and the image is changed to show the dropout case of the selected antenna.
+The type of optimisation can also be changed via a 'querySelector' object.
+*/
+
 if(window.addEventListener) {
-    let filesDropout = new Array();
     let fileNamesDropoutSum = new Array();
     let fileNamesDropoutRobust = new Array();
     let N_dropout = -1, scaleDropout = 0.8;
@@ -22,9 +27,6 @@ if(window.addEventListener) {
                 });
             }
 
-            //sliderZoom = document.getElementById('sliderZoom');
-            //sliderZoom.addEventListener("input", function(e){setZoom(e.target.value);}, false);
-
             /// Load the images
             for (let i = 0; i < 8; i++) {
                 fileNamesDropoutSum[i] = "img/Dropouts/sum_8_50_dropout_" + i + ".png"; //URL.createObjectURL(fileNames[i]);
@@ -35,27 +37,31 @@ if(window.addEventListener) {
         }
         function changeOptimisation()
         {
-          OptimisationType = this.value;
-          displayImage();
+          // this function is called when a user changes between optimisation for coverage and dropouts.
+          OptimisationType = this.value; // get new optimisation type
+          displayImage(); // render image
         }
         function setNDropout(N)
         {
+          // this function is called when the user moves the slider.
             if ( N != N_dropout )
             {
-                N_dropout = N;
-                valueDropout.innerHTML = N_dropout.toString();
-                requestAnimationFrame(displayImage);
+                N_dropout = N; // set the new index of the failed antenna
+                valueDropout.innerHTML = N_dropout.toString(); // change the displayed value
+                requestAnimationFrame(displayImage); // render image
             }
         }
 
         function displayImage()
         {
+          // this function re-loads the image based on the current parameters.
+          // It is called by other functions that respond to user changes.
             if (OptimisationType == 'coverage')
             {
-               dropoutImage.src = fileNamesDropoutSum[N_dropout];
+               dropoutImage.src = fileNamesDropoutSum[N_dropout]; // change the image src URL
             }
             else {
-              dropoutImage.src = fileNamesDropoutRobust[N_dropout];
+              dropoutImage.src = fileNamesDropoutRobust[N_dropout]; // change the image src URL
           }
         }
         init();

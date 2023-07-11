@@ -1,3 +1,9 @@
+/*
+This code handles the interactive component of the Energy ("Energy-efficient networks") section.
+Slider changes for required minimum signal and required average signal are caught
+and the image is changed to show a layout that fulfills these conditions at the lowest power usage.
+Energy usage with the current layout is displayed in watts and savings over maximum power settings.
+*/
 if(window.addEventListener) {
     let filesNamesMetric = new Array();
     let fileNamesEnergy = new Array();
@@ -16,28 +22,27 @@ if(window.addEventListener) {
         function init () {
             /// GET THE I/O HTML OBJECTS
             N_energy = 10
-            sliderMinPower = document.getElementById('sliderMinPower');
+            sliderMinPower = document.getElementById('sliderMinPower'); // required minimum power
             sliderMinPower.addEventListener("input", function(e){setMinPower(e.target.value);}, false);
             valueMinPower = document.getElementById('valueMinPower');
-            sliderMeanPower = document.getElementById('sliderMeanPower');
+            sliderMeanPower = document.getElementById('sliderMeanPower'); // required mean power
             sliderMeanPower.addEventListener("input", function(e){setMeanPower(e.target.value);}, false);
             valueMeanPower = document.getElementById('valueMeanPower');
             energyUsage = document.getElementById('energyUsage');
             energySavings = document.getElementById('energySavings');
             imageEnergy = document.getElementById("EnergyCoverage");
             imageEnergyMetric = document.getElementById("EnergyMetric");
-            //sliderZoom = document.getElementById('sliderZoom');
-            //sliderZoom.addEventListener("input", function(e){setZoom(e.target.value);}, false);
 
             /// Load the images
             for (let i = 0; i < 30; i++) {
-                fileNamesEnergy[i] = "img/Energy/" + i +".png";
-                filesNamesMetric[i] = "img/Energy/metric_" + i +".png";
+                fileNamesEnergy[i] = "img/Energy/" + i +".png"; // the coverage map files
+                filesNamesMetric[i] = "img/Energy/metric_" + i +".png"; // the power vs received signal plot with current case highlighted
             }
             valueMinPower.innerHTML = currentMinPower.toString()+' dBm';
             valueMeanPower.innerHTML = currentMeanPower.toString()+' dBm';
 
-            /// load the data
+            /* load the data. We have a set of precalculated power levels, each with minimum power, mean power and energy usage.
+            These are stored in .txt files and loaded here into arrays. They are sorted from lowest to highest energy usage. */
 
             var readerMinPower = new XMLHttpRequest() || new ActiveXObject('MSXML2.XMLHTTP');
             var readerMeanPower = new XMLHttpRequest() || new ActiveXObject('MSXML2.XMLHTTP');
@@ -73,6 +78,8 @@ if(window.addEventListener) {
                 }
                 readerEnergy.send(null);
             }
+            // the arrays are loaded sequentially, such that the new index is
+            // not calculated before they are all loaded (otherwise segfaults are possible on slow browsers)
             loadMinPower();
 
 
@@ -81,6 +88,7 @@ if(window.addEventListener) {
         }
         function setMinPower(P)
         {
+          // this is called when the user changes the required minimum power. New index is calculated
             if (P != currentMinPower)
             {
                 currentMinPower = P;
@@ -90,6 +98,7 @@ if(window.addEventListener) {
         }
         function setMeanPower(P)
         {
+          // this is called when the user changes the required mean power. New index is calculated
             if (P != currentMeanPower)
             {
                 currentMeanPower = P;
@@ -99,13 +108,14 @@ if(window.addEventListener) {
         }
         function calculate_new_index(min, mean)
         {
-            //console.log(min,mean, energy);
+          // this function loops from low to high energy usage power settings
+          // to find the lowest one that fullfills current user requirements.
             for (let i = 0; i < energy.length; i++) {
-                //console.log(minPower[i], min, meanPower[i], mean);
                 if (minPower[i] >= min && meanPower[i] >= mean)
                 {
                     currentEnergy = energy[i];
                     energyUsage.value = currentEnergy.toString()+" mW";
+                    // 2511.89 is the max energy usage
                     energySavings.value = (100 - currentEnergy*100/2511.89).toFixed(1).toString()+" %";
                     N_energy = i;
                     break;
@@ -116,6 +126,7 @@ if(window.addEventListener) {
 
         function displayImage()
         {
+          // changes the image to the current setting
             imageEnergy.src = fileNamesEnergy[N_energy];
             imageEnergyMetric.src = filesNamesMetric[N_energy];
         }
